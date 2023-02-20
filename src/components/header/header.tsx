@@ -9,15 +9,21 @@ import MenuIcon from '@mui/icons-material/Menu';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { ColorMode, selectAppColorMode, setAppColorMode } from '../../slices/app.slice';
+import { ColorMode, selectAppColorMode, selectIsUserLogged, setAppColorMode } from '../../slices/app.slice';
+import { authService } from '../../service/auth/auth.service';
 
 const Header: React.FC = () => {
     const dispatch = useAppDispatch();
     const colorMode = useAppSelector(selectAppColorMode)
+    const isUserLogged = useAppSelector(selectIsUserLogged)
 
     const handleAppColorModeChange = () => {
         const newColorMode: ColorMode =  colorMode === 'light' ? 'dark' : 'light'
         dispatch(setAppColorMode(newColorMode))
+    }
+
+    const logMockUser = () => {
+        authService.signIn('jaroslaw.bielecki@poczta.fm', '123456')
     }
 
     return <>
@@ -45,7 +51,7 @@ const Header: React.FC = () => {
                            {colorMode === 'dark' ?  <DarkModeIcon/> : <LightModeIcon />}
                         </IconButton>
                     </Box>
-                    <Button color="inherit">Login</Button>
+                    {isUserLogged ? 'cos' : <Button color="inherit" onClick={logMockUser}>Login</Button>}
                 </Toolbar>
             </AppBar>
         </Box>
