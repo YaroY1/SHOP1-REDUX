@@ -13,13 +13,19 @@ import { onAuthStateChanged, User } from "firebase/auth";
 import { useEffect } from "react";
 import { auth } from ".";
 import { authService } from "./service/auth/auth.service";
+import { firestoreService } from "./service/firestore/firestore.service";
+import { productsMock } from "./mocks/products.mock";
+import Products from "./components/products/products";
 
 function App() {
 	const colorMode = useAppSelector(selectAppColorMode);
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		
+		// zrob tu cos jak komponent bedzie sie wymontowywał
+		return () => {
+			authService.signOut();
+		};
 	}, []);
 
 	useEffect(() => {
@@ -44,6 +50,8 @@ function App() {
 		<ThemeProvider theme={colorMode === "light" ? lightTheme : darkTheme}>
 			<div className="App">
 				<Header />
+				<Products />
+				{/* <button onClick={() => {firestoreService.createMockProductData(productsMock)}} >Wygeneruj produkty</button> */}
 			</div>
 		</ThemeProvider>
 	);

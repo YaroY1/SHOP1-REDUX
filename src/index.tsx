@@ -6,8 +6,8 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
 import { initializeApp } from "firebase/app";
-import {getAuth} from 'firebase/auth'
-
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
 	apiKey: "AIzaSyBNF6Gfm3orVPEjKdanTddZ-GiXm_bg79c",
@@ -20,6 +20,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app)
+export const firestore = getFirestore(app)
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);

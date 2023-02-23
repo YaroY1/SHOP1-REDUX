@@ -1,6 +1,6 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UserMetadata } from "firebase/auth";
-import { RootState, AppThunk } from "../app/store";
+import { RootState } from "../app/store";
 
 export type ColorMode = "light" | "dark";
 
